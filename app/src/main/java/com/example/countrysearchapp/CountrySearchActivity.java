@@ -26,40 +26,45 @@ public class CountrySearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country_search);
 
-        // 初始化视图
+        // Bind views
         etCountryName = findViewById(R.id.etCountryName);
         btnSearch = findViewById(R.id.btnSearch);
         progressBar = findViewById(R.id.progressBar);
         rvCountries = findViewById(R.id.rvCountries);
 
-        // 设置 RecyclerView
+        // Set RecyclerView layout to vertical list
         rvCountries.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CountryAdapter();
         rvCountries.setAdapter(adapter);
 
-        // 设置搜索按钮点击事件
+        // Set button click listener to start search
         btnSearch.setOnClickListener(v -> {
             String query = etCountryName.getText().toString().trim();
             if (query.isEmpty()) {
+                // Show toast if input is empty
                 Toast.makeText(this, "Please enter a country name", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Show loading spinner and start network request
             progressBar.setVisibility(View.VISIBLE);
             fetchCountries(query);
         });
     }
 
+    // Fetch country data from the network using helper class
     private void fetchCountries(String name) {
         CountryFetcher.fetchCountries(name, new CountryFetcher.Callback() {
             @Override
             public void onSuccess(List<Country> countries) {
+                // Hide progress bar and update RecyclerView
                 progressBar.setVisibility(View.GONE);
                 adapter.setCountries(countries);
             }
 
             @Override
             public void onError(String error) {
+                // Hide progress bar and show error
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(CountrySearchActivity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
             }

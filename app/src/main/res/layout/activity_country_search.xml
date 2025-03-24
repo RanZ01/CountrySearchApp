@@ -10,17 +10,19 @@
         android:id="@+id/etCountryName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter country name"
+        android:hint="@string/et"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnSearch"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"/>
 
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="@string/search"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
