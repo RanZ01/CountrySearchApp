@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 初始化按钮并设置点击事件
         Button btnSearchCountries = findViewById(R.id.btnSearchCountries);
         btnSearchCountries.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, CountrySearchActivity.class));
